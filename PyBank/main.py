@@ -13,15 +13,13 @@ budgetpath = "C:\\Users\\aipat\\python-challenge\\resources\\budget_data.csv"
 
 months = []
 total = []
+profitloss = []
 
 with open(budgetpath, 'r') as budgetfile:
     budgetreader = csv.reader(budgetfile, delimiter=",")
     budgetheader = next(budgetreader)
     
-    decrease = 0
-    increase = 0
-
-    
+  
     #this will iterate through each row of the csv file and read it
     #this for loop will continue to loop through the csvfile till 
     #it reaches the end
@@ -31,27 +29,35 @@ with open(budgetpath, 'r') as budgetfile:
         #print(f'{row[1]}')
         
         #this will store the values of each column in either months list or total list
-
         months.append(row[0])
-        total.append(row[1])
+        total.append(int(row[1]))
         
+    # iterate through to calculate the profit/loss change
+    for i in range(len(total)-1):
+        profitloss.append(total[i+1]-total[i])       
+          
+totalsum = sum(int(x) for x in total)
 
+avgchange = round(sum(profitloss)/len(profitloss),2)
 
-     zip(months, total)
-    
-    
-        
-    totalsum = sum(int(x) for x in total)
-    avgchange = int(totalsum / len(total))
+#Calculate the max/min profit loss
+increase_profit = max(profitloss)
+decrease_loss = min(profitloss)
 
+#Calculate the max months to try to associate with profit/loss
+increase_months = months[profitloss.index(increase_profit) + 1]
+decrease_months = months[profitloss.index(decrease_loss) + 1]
 
-
+print("============================================================")
 print("")
 print(f'There are a total of {len(months)} months')
 print("")
 print(f'The total profit/loss margin is ${totalsum}')
-print(f'The average is ${avgchange}')
-print("This is the end")
-
+print(f'The average change is ${avgchange}')
+print(f'The Max Increase value is {(increase_months)} ${increase_profit}')
+print(f'The Max Decrease value is {(decrease_months)} ${decrease_loss}')
+print("")
+print("This is the end of Bank Analysis")
+print("============================================================")
 
 
