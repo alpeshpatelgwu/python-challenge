@@ -60,4 +60,25 @@ print("")
 print("This is the end of Bank Analysis")
 print("============================================================")
 
+output_analysis = "C:\\Users\\aipat\\python-challenge\\PyBank\\PyBankAnalysis.txt"
 
+with open(output_analysis, 'w') as analysisfile:
+
+	analysisfile.write("============================================================")
+	analysisfile.write("\n")
+	analysisfile.write("This is your financial analysis of Py Bank")
+	analysisfile.write("\n")
+	analysisfile.write(f'There are a total of {len(months)} months')
+	analysisfile.write("\n")	
+	analysisfile.write(f'The total profit/loss margin is ${totalsum}')
+	analysisfile.write("\n")	
+	analysisfile.write(f'The average change is ${avgchange}')
+	analysisfile.write("\n")	
+	analysisfile.write(f'The Max Increase value is {(increase_months)} ${increase_profit}')
+	analysisfile.write("\n")	
+	analysisfile.write(f'The Max Decrease value is {(decrease_months)} ${decrease_loss}')
+	analysisfile.write("\n")	
+	analysisfile.write("This is the end of Bank Analysis")
+	analysisfile.write("\n")	
+	analysisfile.write("============================================================")
+	
